@@ -7,6 +7,7 @@ module Types
     def films
       Film.all
     end
+    
 
     field :genres, [Types::GenreType], null: false
 

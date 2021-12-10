@@ -1,10 +1,14 @@
 class User < ApplicationRecord
+  has_secure_password
 
-    has_many :followings
+  validates :name, presence: true
+  validates :email, presence: true, uniqueness: true
+  has_many :followings
 
 
     def self.recommend
       user = User.find(1)
+      return "You need to follow some films, people or genres to get recommendations" if user.followings.size < 10
       @film_pool = []
       films_from_favorite_genres = Film.includes(:followings).where(genre_id: user.followings.where(followable_type: 'Genre').pluck(:followable_id)).pluck(:id)
       release_date_raw = Film.where(id: user.followings.where(followable_type: 'Film').pluck(:followable_id)).pluck(:year)
@@ -21,7 +25,7 @@ class User < ApplicationRecord
       @remove_already_follewed_films = user.followings.where(followable_type: 'Film').pluck(:followable_id)
       @film_pool = @film_pool - @remove_already_follewed_films
       result = @film_pool.tally.sort_by {|k, v| -v} .first(5).map {|x| x[0]}
-      return Film.where(id: result)
+      Film.where(id: result)
     end
 
   end

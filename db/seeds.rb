@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-=begin
+
 ["Drama", "War", "Mystery", "Horror", "Sci-Fi", "Action", "Comedy", "Biography", "Romance", "Sport", "History", "Crime"].each do |genre |
     Genre.create!(name: genre)
   end
@@ -49,7 +49,7 @@ war_data.each do |hash|
         end
     end
 end
-
+=begin
 puts "War films created"
 mystery_data = JSON.parse(File.open('static_data/mystery.json').read)
 mystery_data.each do |hash|

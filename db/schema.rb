@@ -15,11 +15,19 @@ ActiveRecord::Schema.define(version: 0) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "characters", force: :cascade do |t|
+    t.bigint "film_id"
+    t.bigint "individual_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["film_id"], name: "index_characters_on_film_id"
+    t.index ["individual_id"], name: "index_characters_on_individual_id"
+  end
+
   create_table "films", force: :cascade do |t|
     t.string "title"
     t.integer "year"
     t.bigint "genre_id"
-    t.string "cast", array: true
     t.string "poster"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -27,7 +35,6 @@ ActiveRecord::Schema.define(version: 0) do
   end
 
   create_table "followings", force: :cascade do |t|
-    t.boolean "is_following", default: true
     t.bigint "user_id", null: false
     t.bigint "followable_id", null: false
     t.string "followable_type", null: false
@@ -49,19 +56,12 @@ ActiveRecord::Schema.define(version: 0) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "characters", force: :cascade do |t|
-    t.bigint "film_id"
-    t.bigint "individual_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["film_id"], name: "index_characters_on_film_id"
-    t.index ["individual_id"], name: "index_characters_on_individual_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "email"
+    t.string "password_digest"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
 end
