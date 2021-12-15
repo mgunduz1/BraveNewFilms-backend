@@ -8,6 +8,7 @@ module Types
     field :followed_genres, [Types::GenreType], null: false
     field :followed_films, [Types::FilmType], null: false
     field :followed_individuals, [Types::IndividualType], null: false
+    field :followings, [Types::FollowingType], null: false
 
     def followed_genres
       Genre.where(id: object.followings.where(followable_type: "Genre").pluck(:followable_id))
@@ -19,6 +20,10 @@ module Types
 
     def followed_individuals
       Individual.where(id: object.followings.where(followable_type: "Individual").pluck(:followable_id))
+    end
+
+    def followings
+      object.followings
     end
 
   end

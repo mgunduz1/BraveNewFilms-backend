@@ -1,22 +1,19 @@
 module Mutations
   class CreateUser < BaseMutation
-    class AuthProviderSignupData < Types::BaseInputObject
-      argument :credentials, Types::AuthProviderCredentialsInput, required: false
-    end
+    null false
 
     argument :name, String, required: true
-    argument :auth_provider, AuthProviderSignupData, required: false
+    argument :email, String, required: true
+    argument :password, String, required: true
 
     type Types::UserType
 
-    def resolve(name: nil, auth_provider: nil)
+    def resolve(name: nil, email: nil, password: nil)
       User.create!(
-        name: name,
-        email: auth_provider&.[](:credentials)&.[](:email),
-        password: auth_provider&.[](:credentials)&.[](:password)
+          name: name,
+          email: email,
+          password: password,
       )
-    rescue ActiveRecord::RecordInvalid => e
-      GraphQL::ExecutionError.new("Invalid input: #{e.record.errors.full_messages.join(', ')}")
     end
   end
 end

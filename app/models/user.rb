@@ -6,8 +6,8 @@ class User < ApplicationRecord
   has_many :followings
 
 
-    def self.recommend
-      user = User.find(1)
+    def self.recommendation(id)
+      user = User.find(id)
       return "You need to follow some films, people or genres to get recommendations" if user.followings.size < 10
       @film_pool = []
       films_from_favorite_genres = Film.includes(:followings).where(genre_id: user.followings.where(followable_type: 'Genre').pluck(:followable_id)).pluck(:id)
@@ -24,8 +24,8 @@ class User < ApplicationRecord
       @film_pool.flatten!
       @remove_already_follewed_films = user.followings.where(followable_type: 'Film').pluck(:followable_id)
       @film_pool = @film_pool - @remove_already_follewed_films
-      result = @film_pool.tally.sort_by {|k, v| -v} .first(5).map {|x| x[0]}
-      Film.where(id: result)
+      result = @film_pool.tally.sort_by {|k, v| -v} .first(6).map {|x| x[0]}
+      
     end
 
   end

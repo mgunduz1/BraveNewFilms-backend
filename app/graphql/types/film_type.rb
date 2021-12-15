@@ -8,10 +8,23 @@ module Types
     field :poster, String, null: true
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
-    field :characters, [Types::CharacterType], null: true
-
-    def characters
-      object.characters
+    field :individuals, [Types::IndividualType], null: true
+    field :followers, [Types::FollowingType], null: true
+    field :recommended, [Types::FilmType], null: true do
+      argument :id, ID, required: true
     end
+
+    def individuals
+      object.characters.map(&:individual)
+    end
+
+    def followers
+      object.followings
+    end
+
+    def recommended(id:)
+      Film.where(id: User.recommendation(id))
+    end
+
   end
 end

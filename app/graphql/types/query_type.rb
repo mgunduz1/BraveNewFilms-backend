@@ -27,6 +27,14 @@ module Types
       User.all
     end
 
+    field :user, Types::UserType, null: false do
+      argument :id, ID, required: true
+    end
+
+    def user(id:)
+      User.find(id)
+    end
+
     field :film, Types::FilmType, null: false do
       argument :id, ID, required: true
     end
@@ -35,6 +43,31 @@ module Types
       Film.find(id)
       
     end
+
+    field :genre, Types::GenreType, null: false do
+      argument :id, ID, required: true
+    end
+
+    def genre(id:)
+      Genre.find(id)
+    end
+
+    field :individual, Types::IndividualType, null: false do
+      argument :id, ID, required: true
+    end
+
+    def individual(id:)
+      Individual.find(id)
+    end
+
+    field :recommended, [Types::FilmType], null: false do
+      argument :id, ID, required: true
+    end
+
+    def recommended(id:)
+      Film.where(id: User.recommendation(id))
+    end
+
 
   end
 end

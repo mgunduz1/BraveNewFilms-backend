@@ -49,7 +49,7 @@ war_data.each do |hash|
         end
     end
 end
-=begin
+
 puts "War films created"
 mystery_data = JSON.parse(File.open('static_data/mystery.json').read)
 mystery_data.each do |hash|
@@ -256,5 +256,3 @@ crime_data.each do |hash|
         end
     end
 end
-
-=end
