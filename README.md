@@ -1,6 +1,6 @@
 # BraveNewFilms
 
-> This is a backend repo of my project. You can take a look at front end part from HERE
+> This is a backend repo of my project. You can take a look at front end part from [HERE](https://github.com/mgunduz1/BraveNewFilms-Frontend)
 
 ## Backend Built With
 
@@ -11,7 +11,7 @@
 
 ## Live Demo
 
-[Right Here]()
+[Right Here](https://boiling-ridge-88818.herokuapp.com/)
 
 ## Getting Started
 
@@ -51,7 +51,7 @@ Start your server with:
 $ rails s
 ```
 
-Open `http://localhost:3000/graphiql` in your browser to interact with database with ease
+If you want to use graphiql, you need to uncomment line 15 on config/application.rb then you can open `http://localhost:3000/graphiql` in your browser to interact with database with ease.
 
 ## ✒️  Author <a name = "author"></a>
 
