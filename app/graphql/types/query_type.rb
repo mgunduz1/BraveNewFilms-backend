@@ -1,13 +1,11 @@
 module Types
   class QueryType < Types::BaseObject
 
-
     field :films, [Types::FilmType], null: false
 
     def films
       Film.all
     end
-    
 
     field :genres, [Types::GenreType], null: false
 
@@ -41,7 +39,6 @@ module Types
 
     def film(id:)
       Film.find(id)
-      
     end
 
     field :genre, Types::GenreType, null: false do
@@ -67,7 +64,6 @@ module Types
     def recommended(id:)
       Film.where(id: User.recommendation(id))
     end
-
 
   end
 end

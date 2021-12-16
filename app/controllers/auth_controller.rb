@@ -10,16 +10,5 @@ class AuthController < ApplicationController
           render json: {failure: "Log in failed! name or password invalid!"}
       end
     end
-  
-    def auto_login
-      if session_user
-        render json: session_user
-      else
-        render json: {errors: "No User Logged In"}
-      end
-    end
-  
-    def user_is_authed
-      render json: {message: "You are authorized"}
-    end
-  end
+
+end

@@ -1,24 +1,61 @@
-# README
+# BraveNewFilms
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+> This is a backend repo of my project. You can take a look at front end part from HERE
 
-Things you may want to cover:
+## Backend Built With
 
-* Ruby version
+- Ruby 3
+- Ruby on Rails v6.1.4
+- PostgreSQL
+- GraphQL
 
-* System dependencies
+## Live Demo
 
-* Configuration
+[Right Here]()
 
-* Database creation
+## Getting Started
 
-* Database initialization
+To get a local copy up and running follow these simple example steps.
 
-* How to run the test suite
+### Prerequisites
 
-* Services (job queues, cache servers, search engines, etc.)
+Ruby 3
+Rails 6.1.4 
+Postgres >=9.5
 
-* Deployment instructions
+### Setup
 
-* ...
+Install gems with:
+
+```
+$ bundle install
+```
+
+Create, load and seed database with:
+
+```
+$ rails db:setup
+```
+
+### Testing
+
+```
+$ rspec
+```
+
+### Usage
+
+Start your server with:
+
+```
+$ rails s
+```
+
+Open `http://localhost:3000/graphiql` in your browser to interact with database with ease
+
+## ✒️  Author <a name = "author"></a>
+
+👤 **Mert Gündüz**
+
+- Github: [![](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/mgunduz1)
+- Linkedin: [![](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mertgunduz1/)

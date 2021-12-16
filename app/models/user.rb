@@ -1,8 +1,9 @@
 class User < ApplicationRecord
   has_secure_password
 
-  validates :name, presence: true
-  validates :email, presence: true, uniqueness: true
+  validates :name, presence: true, length: { minimum: 3 }, uniqueness: true
+  validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :password, presence: true, length: { minimum: 6 }
   has_many :followings
 
 
@@ -25,7 +26,6 @@ class User < ApplicationRecord
       @remove_already_follewed_films = user.followings.where(followable_type: 'Film').pluck(:followable_id)
       @film_pool = @film_pool - @remove_already_follewed_films
       result = @film_pool.tally.sort_by {|k, v| -v} .first(6).map {|x| x[0]}
-      
     end
 
   end
